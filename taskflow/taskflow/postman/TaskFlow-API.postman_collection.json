@@ -1,0 +1,50 @@
+{
+  "info": {
+    "name": "TaskFlow API",
+    "description": "Collection de test pour l'endpoint consommé par l'application TaskFlow.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "GET Tasks",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://jsonplaceholder.typicode.com/todos?_limit=8",
+          "protocol": "https",
+          "host": ["jsonplaceholder", "typicode", "com"],
+          "path": ["todos"],
+          "query": [{ "key": "_limit", "value": "8" }]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Statut 200', function () {",
+              "  pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test('Retourne un tableau de 8 éléments', function () {",
+              "  const body = pm.response.json();",
+              "  pm.expect(body).to.be.an('array').with.lengthOf(8);",
+              "});",
+              "",
+              "pm.test('Chaque tâche a un id, un titre et un statut completed', function () {",
+              "  const body = pm.response.json();",
+              "  body.forEach((task) => {",
+              "    pm.expect(task).to.have.property('id');",
+              "    pm.expect(task).to.have.property('title');",
+              "    pm.expect(task).to.have.property('completed');",
+              "  });",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    }
+  ]
+}

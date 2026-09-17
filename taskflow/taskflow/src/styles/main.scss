@@ -1,0 +1,18 @@
+@use './variables' as *;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: $font-family-base;
+  background: $color-bg;
+  color: $color-text;
+}
+
+.app-shell {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: $space-5 $space-4;
+}
