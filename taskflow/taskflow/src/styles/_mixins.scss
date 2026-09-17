@@ -1,3 +1,4 @@
+@use "./variables" as *;
 // Mixin : media query mobile-first
 @mixin respond-above($breakpoint) {
   @media (min-width: $breakpoint) {
@@ -27,3 +28,4 @@
     outline-offset: 2px;
   }
 }
+Fix: import des variables SCSS manquant dans _mixins.scss
