@@ -1,0 +1,60 @@
+# TaskFlow
+
+Une application de gestion de tâches construite avec Vue 3, née d'une envie simple : pratiquer de vraies bonnes pratiques front-end sur un projet complet plutôt que sur des exercices isolés.
+
+Plutôt que de me contenter d'un CRUD basique, j'ai voulu traiter TaskFlow comme un mini produit réel — avec une architecture de composants soignée, des styles organisés, des tests automatisés et quelques optimisations de performance qu'on retrouve dans de vraies applications en production.
+
+## Ce que fait l'application
+
+TaskFlow permet de créer, modifier, filtrer et suivre des tâches à travers une interface réactive et légère. Rien de spectaculaire en surface — l'intérêt est surtout dans la façon dont c'est construit en dessous.
+
+## Stack technique
+
+- **Vue 3** (Composition API) et Vue Router
+- **Vite** pour le build et le serveur de développement
+- **SCSS** structuré (variables, mixins) avec la méthodologie **BEM**
+- **Jest** et Vue Test Utils pour les tests unitaires
+- **Postman** pour les tests d'API
+
+## Installation
+
+```bash
+npm install
+npm run dev       # serveur de développement
+npm run test      # suite de tests
+npm run build     # build de production
+```
+
+## Quelques choix que j'ai faits, et pourquoi
+
+**BEM pour les styles.** Chaque composant suit la convention `bloc__élément--modificateur` (voir `TaskCard.vue`). Ça évite les conflits de spécificité CSS et rend chaque composant compréhensible même isolé du reste de la feuille de style.
+
+**SCSS centralisé.** Les couleurs, espacements et breakpoints vivent dans `src/styles/_variables.scss`, importés automatiquement dans chaque composant. Aucune valeur magique dupliquée d'un fichier à l'autre.
+
+**Des tests qui vérifient vraiment quelque chose.** Les tests unitaires couvrent le rendu des composants, les classes appliquées conditionnellement et les événements émis. La collection Postman valide de son côté le code de statut, la structure et les champs attendus de la réponse API — pas juste que « ça répond 200 ».
+
+**Un peu de performance, sans complexité inutile.** Code splitting par route pour ne charger que ce qui est nécessaire, debounce sur la recherche pour ne pas relancer un filtrage à chaque frappe, et `v-memo` sur la liste pour éviter des re-rendus superflus.
+
+## Structure du projet
+
+```
+src/
+├── api/          # Appels API
+├── components/   # TaskCard, TaskList, SearchBar
+├── router/       # Routes, avec code splitting
+├── styles/       # Variables et mixins SCSS
+├── utils/        # Fonctions utilitaires (debounce, etc.)
+├── views/        # Pages de l'application
+└── __tests__/    # Tests unitaires
+```
+
+## Ce que j'aimerais ajouter avec plus de temps
+
+- Une vraie persistance des données (API ou localStorage)
+- Un mode sombre, en réutilisant les tokens SCSS déjà en place
+- Une mesure concrète du gain du code splitting avec Lighthouse
+
+## Contact
+
+**Ange Patrice Mala**
+[angepatricemala@gmail.com](mailto:angepatricemala@gmail.com)
